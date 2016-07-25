@@ -5,7 +5,7 @@ const Book = ({ length, text }) => {
 	const chapters = [];
 	for (let i = 0; i < length; i++) {
 		const chapterText = text[i];
-		chapters.push(<Chapter text={chapterText} number={i} key={i} />);
+		chapters.push(<Chapter text={chapterText} number={i} />);
 	}
 	return <div>{chapters}</div>;
 };
@@ -15,8 +15,7 @@ Book.propTypes = {
 	number: PropTypes.number.isRequired,
 	bookName: PropTypes.string.isRequired,
 	text: PropTypes.arrayOf(
-		PropTypes.arrayOf(PropTypes.shape({
-			verseText: PropTypes.string.isRequired,
-		}).isRequired).isRequired
+		PropTypes.arrayOf(PropTypes.string.isRequired,
+		).isRequired
 	).isRequired,
 };
