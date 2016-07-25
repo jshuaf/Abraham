@@ -4,13 +4,13 @@ import { createStore } from 'redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Chapter from './Chapter.jsx';
+import Book from './Book.jsx';
 
 class App extends React.Component {
 	render() {
 		return (
 			<div>
-				<Chapter />
+				<Book />
 			</div>
 		);
 	}
