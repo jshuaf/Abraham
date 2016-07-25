@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { post as requestPost } from 'request';
 
 import Book from './Book.jsx';
 
@@ -15,7 +16,7 @@ class App extends React.Component {
 		};
 	}
 	componentDidMount() {
-
+		requestPost('./book', { bookNumber: 1 });
 	}
 	render() {
 		return (
