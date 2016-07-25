@@ -1,4 +1,4 @@
 /node_modules
 npm-debug.log
-/app/bundle.js
-/app/bundle.js.map
+/app/public/assets/bundle.js
+/app/public/assets/bundle.js.map

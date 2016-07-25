@@ -49,6 +49,8 @@
 
 	'use strict';
 	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
 	var _Chapter = __webpack_require__(/*! ./Chapter.jsx */ 1);
 	
 	var _Chapter2 = _interopRequireDefault(_Chapter);
@@ -67,7 +69,37 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	_reactDom2.default.render(_react2.default.createElement(_Verse2.default, null), document.getElementById('mountPoint'));
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Abraham = function (_React$Component) {
+		_inherits(Abraham, _React$Component);
+	
+		function Abraham() {
+			_classCallCheck(this, Abraham);
+	
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(Abraham).apply(this, arguments));
+		}
+	
+		_createClass(Abraham, [{
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'div',
+					null,
+					_react2.default.createElement(_Chapter2.default, null),
+					_react2.default.createElement(_Verse2.default, null)
+				);
+			}
+		}]);
+	
+		return Abraham;
+	}(_react2.default.Component);
+	
+	_reactDom2.default.render(_react2.default.createElement(Abraham, null), document.getElementById('mountPoint'));
 
 /***/ },
 /* 1 */
@@ -95,10 +127,10 @@
 	var Chapter = function (_React$Component) {
 		_inherits(Chapter, _React$Component);
 	
-		function Chapter(props) {
+		function Chapter() {
 			_classCallCheck(this, Chapter);
 	
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(Chapter).call(this, props));
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(Chapter).apply(this, arguments));
 		}
 	
 		_createClass(Chapter, [{
@@ -4147,7 +4179,7 @@
 		var style = {};
 		return _react2.default.createElement(
 			'p',
-			null,
+			{ style: style },
 			'Hello'
 		);
 	};
