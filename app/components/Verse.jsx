@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-const Verse = (props) => {
+const Verse = ({ text }) => {
 	const style = {};
-	return <p style={style}>{props.text}</p>;
+	return <p style={style}>{text}</p>;
 };
 
 Verse.propTypes = {
-	text: React.PropTypes.string.isRequired,
+	text: PropTypes.string.isRequired,
+	number: PropTypes.number.isRequired,
 };
 
 export default Verse;

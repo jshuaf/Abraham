@@ -7,10 +7,20 @@ import ReactDOM from 'react-dom';
 import Book from './Book.jsx';
 
 class App extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			bookName: null,
+			bookText: null,
+		};
+	}
+	componentDidMount() {
+
+	}
 	render() {
 		return (
 			<div>
-				<Book />
+				<Book bookName={this.state.bookName} text={this.state.bookText} />
 			</div>
 		);
 	}

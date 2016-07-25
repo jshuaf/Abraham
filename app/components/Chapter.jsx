@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 import Verse from './Verse.jsx';
 
-const Chapter = ({ length, text }) => {
+const Chapter = ({ text }) => {
 	const verses = [];
-	for (let i = 0; i < length; i++) {
+	for (let i = 0; i < text.length; i++) {
 		const verseText = text[i];
 		verses.push(<Verse text={verseText} number={i} />);
 	}
@@ -11,9 +11,10 @@ const Chapter = ({ length, text }) => {
 };
 
 Chapter.propTypes = {
-	length: PropTypes.number.isRequired,
 	number: PropTypes.number.isRequired,
 	text: PropTypes.arrayOf(
 		PropTypes.string.isRequired,
 	).isRequired,
 };
+
+export default Chapter;
