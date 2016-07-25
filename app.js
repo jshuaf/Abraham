@@ -7,7 +7,6 @@ app.get('/', (req, res) => {
 	res.sendFile('./app/public/views/index.html', { root: __dirname });
 });
 
-
 app.listen(3000, () => {
 	console.log('Example app listening on port 3000!');
 });
