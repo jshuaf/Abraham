@@ -5,7 +5,7 @@ const Chapter = ({ text }) => {
 	const verses = [];
 	for (let i = 0; i < text.length; i++) {
 		const verseText = text[i];
-		verses.push(<Verse text={verseText} number={i} />);
+		verses.push(<Verse text={verseText} number={i + 1} />);
 	}
 	return <div>{verses}</div>;
 };
