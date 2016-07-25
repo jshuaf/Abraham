@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-	entry: path.resolve('app/components/Abraham.jsx'),
+	entry: path.resolve('app/components/App.jsx'),
 	output: { path: 'app/public/assets', filename: 'bundle.js' },
 	module: {
 		loaders: [

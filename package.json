@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npm run test",
     "dev": "./node_modules/.bin/webpack -d --watch",
-		"lint": "./node_modules/.bin/eslint . --ext .jsx, .js || true"
+    "lint": "./node_modules/.bin/eslint . --ext .jsx, .js || true"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
     "mssql": "^3.3.0",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
+    "react-redux": "^4.4.5",
     "webpack": "^1.13.1"
   },
   "devDependencies": {
