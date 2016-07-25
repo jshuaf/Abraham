@@ -6,7 +6,6 @@ class Chapter extends React.Component {
 	}
 
 	render() {
-
 	}
 }
 
