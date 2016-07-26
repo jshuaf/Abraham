@@ -97,13 +97,15 @@
 		_createClass(App, [{
 			key: 'componentDidMount',
 			value: function componentDidMount() {
+				var _this2 = this;
+	
 				(0, _request2.default)({
 					url: 'http://localhost:4000/book',
 					method: 'post',
 					json: true, // <--Very important!!!
 					body: { bookNumber: 1 }
 				}, function (error, response, body) {
-					// console.log(response, body);
+					_this2.setState(body);
 				});
 			}
 		}, {

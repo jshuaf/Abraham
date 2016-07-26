@@ -22,7 +22,7 @@ class App extends React.Component {
 			json: true,	 // <--Very important!!!
 			body: { bookNumber: 1 },
 		}, (error, response, body) => {
-			// console.log(response, body);
+			this.setState(body);
 		});
 	}
 	render() {
