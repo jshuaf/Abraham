@@ -15,8 +15,9 @@ app.get('/', (req, res) => {
 });
 
 app.post('/book', (req, res) => {
-	const { bookNumber } = req;
-	res.end(JSON.stringify(model.getBook(bookNumber)));
+	const { bookNumber } = req.body;
+	res.write(JSON.stringify(model.getBook(bookNumber)));
+	res.end();
 });
 
 app.listen(4000, () => {
