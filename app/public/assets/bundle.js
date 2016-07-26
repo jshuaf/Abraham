@@ -75678,13 +75678,37 @@
 	var Verse = function Verse(_ref) {
 		var text = _ref.text;
 	
-		var style = {
-			display: 'inline'
-		};
 		// add a space if needed
 		if (text[text.length - 1] !== ' ') {
 			text += ' ';
 		}
+	
+		// check for notes in verse
+		var noteMatcher = /\{([^}]+)\}/ig;
+		var notes = [];
+		var matches = text.match(noteMatcher);
+		if (matches) {
+			for (var i = 0; i < matches.length; i++) {
+				var match = matches[i];
+				notes.push(_react2.default.createElement(VerseNote, { text: match }));
+				text = text.replace(match, '');
+			}
+		}
+	
+		return _react2.default.createElement(
+			'div',
+			null,
+			_react2.default.createElement(VerseText, { text: text }),
+			matches
+		);
+	};
+	
+	var VerseText = function VerseText(_ref2) {
+		var text = _ref2.text;
+	
+		var style = {
+			display: 'inline'
+		};
 		return _react2.default.createElement(
 			'p',
 			{ style: style },
@@ -75692,9 +75716,31 @@
 		);
 	};
 	
+	var VerseNote = function VerseNote(_ref3) {
+		var text = _ref3.text;
+	
+		return _react2.default.createElement(
+			'div',
+			null,
+			_react2.default.createElement(
+				'p',
+				null,
+				text
+			)
+		);
+	};
+	
 	Verse.propTypes = {
 		text: _react.PropTypes.string.isRequired,
 		number: _react.PropTypes.number.isRequired
+	};
+	
+	VerseText.propTypes = {
+		text: _react.PropTypes.string.isRequired
+	};
+	
+	VerseNote.propTypes = {
+		text: _react.PropTypes.string.isRequired
 	};
 	
 	exports.default = Verse;
