@@ -13,6 +13,17 @@ module.exports = {
 					presets: ['es2015', 'react'],
 				},
 			},
+			{
+				test: /\.json$/,
+				loader: 'json-loader',
+			},
 		],
+		noParse: /node_modules\/json-schema\/lib\/validate\.js/,
+	},
+	node: {
+		console: true,
+		fs: 'empty',
+		net: 'empty',
+		tls: 'empty',
 	},
 };

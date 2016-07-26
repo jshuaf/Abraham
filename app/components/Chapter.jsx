@@ -13,7 +13,7 @@ const Chapter = ({ text }) => {
 Chapter.propTypes = {
 	number: PropTypes.number.isRequired,
 	text: PropTypes.arrayOf(
-		PropTypes.string.isRequired,
+		PropTypes.string.isRequired
 	).isRequired,
 };
 

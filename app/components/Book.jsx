@@ -13,8 +13,7 @@ const Book = ({ text }) => {
 Book.propTypes = {
 	bookName: PropTypes.string.isRequired,
 	text: PropTypes.arrayOf(
-		PropTypes.arrayOf(PropTypes.string.isRequired,
-		).isRequired
+		PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
 	).isRequired,
 };
 

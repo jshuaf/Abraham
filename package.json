@@ -1,6 +1,6 @@
 {
   "name": "abraham",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Smooth Scripture for everybody.",
   "main": "app.js",
   "scripts": {
@@ -40,6 +40,7 @@
     "eslint-config-airbnb": "^9.0.1",
     "eslint-plugin-import": "^1.11.1",
     "eslint-plugin-jsx-a11y": "^1.2.0",
-    "eslint-plugin-react": "^5.2.2"
+    "eslint-plugin-react": "^5.2.2",
+    "json-loader": "^0.5.4"
   }
 }
