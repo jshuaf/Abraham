@@ -16,8 +16,10 @@ app.get('/', (req, res) => {
 
 app.post('/book', (req, res) => {
 	const { bookNumber } = req.body;
-	res.write(JSON.stringify(model.getBook(bookNumber)));
-	res.end();
+	model.getBook(bookNumber, (bookInformation) => {
+		res.write(JSON.stringify(bookInformation));
+		res.end();
+	});
 });
 
 app.listen(4000, () => {

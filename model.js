@@ -2,7 +2,7 @@ const MongoClient = require('mongodb').MongoClient;
 const mongoURI = 'mongodb://localhost:27017/bible';
 const assert = require('assert');
 
-exports.getBook = (bookNumber) => {
+exports.getBook = (bookNumber, callback) => {
 	MongoClient.connect(mongoURI, (dbError, db) => {
 		assert.equal(null, dbError);
 
@@ -14,7 +14,7 @@ exports.getBook = (bookNumber) => {
 		const bookText = [];
 		db.collection('web').find({ book: bookNumber }, (collectionError, rawVerses) => {
 			if (!collectionError) {
-				rawVerses.toArray((error, verses) => {
+				rawVerses.sort({ _id: 1 }).toArray((error, verses) => {
 					for (let i = 0; i < verses.length; i++) {
 						const verse = verses[i];
 						const chapter = verse.chapter;
@@ -24,7 +24,7 @@ exports.getBook = (bookNumber) => {
 						bookText[chapter - 1].push(verse.text);
 					}
 					db.close();
-					return { bookName, bookText };
+					callback({ bookName, bookText });
 				});
 			}
 		});
