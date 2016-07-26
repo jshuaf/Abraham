@@ -75678,7 +75678,13 @@
 	var Verse = function Verse(_ref) {
 		var text = _ref.text;
 	
-		var style = {};
+		var style = {
+			display: 'inline'
+		};
+		// add a space if needed
+		if (text[text.length - 1] !== ' ') {
+			text += ' ';
+		}
 		return _react2.default.createElement(
 			'p',
 			{ style: style },

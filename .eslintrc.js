@@ -10,7 +10,8 @@ module.exports = {
 	extends: "airbnb",
 	rules: {
 		"indent": ["error", "tab"],
-		"react/jsx-indent": ["off"]
+		"react/jsx-indent": ["off"],
+		"no-param-reassign": ["off"]
 	},
 	plugins: ["react"]
 }

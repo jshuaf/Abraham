@@ -1,7 +1,13 @@
 import React, { PropTypes } from 'react';
 
 const Verse = ({ text }) => {
-	const style = {};
+	const style = {
+		display: 'inline',
+	};
+	// add a space if needed
+	if (text[text.length - 1] !== ' ') {
+		text += ' ';
+	}
 	return <p style={style}>{text}</p>;
 };
 
