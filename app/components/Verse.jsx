@@ -6,22 +6,9 @@ const Verse = ({ text }) => {
 		text += ' ';
 	}
 
-	// check for notes in verse
-	const noteMatcher = /\{([^}]+)\}/ig;
-	const notes = [];
-	const matches = text.match(noteMatcher);
-	if (matches) {
-		for (let i = 0; i < matches.length; i++) {
-			const match = matches[i];
-			notes.push(<VerseNote text={match} />);
-			text = text.replace(match, '');
-		}
-	}
-
 	return (
 		<div>
 			<VerseText text={text} />
-			{matches}
 		</div>
 	);
 };
@@ -34,8 +21,10 @@ const VerseText = ({ text }) => {
 };
 
 const VerseNote = ({ text }) => {
+	const style = {
+	};
 	return (
-		<div>
+		<div style={style}>
 			<p>{text}</p>
 		</div>
 	);
@@ -54,4 +43,4 @@ VerseNote.propTypes = {
 	text: PropTypes.string.isRequired,
 };
 
-export default Verse;
+module.exports = { Verse, VerseNote };
