@@ -7,7 +7,7 @@ const Book = ({ text }) => {
 		const chapterText = text[i];
 		chapters.push(<Chapter text={chapterText} number={i + 1} key={i + 1} />);
 	}
-	return <div>{chapters}</div>;
+	return <div className="row">{chapters}</div>;
 };
 
 Book.propTypes = {

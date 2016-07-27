@@ -75599,7 +75599,7 @@
 		}
 		return _react2.default.createElement(
 			'div',
-			null,
+			{ className: 'row' },
 			chapters
 		);
 	};
@@ -75640,7 +75640,6 @@
 		var notes = [];
 		for (var verseIndex = 0; verseIndex < text.length; verseIndex++) {
 			var verseText = text[verseIndex];
-			verses.push(_react2.default.createElement(_Verse.Verse, { text: verseText, number: verseIndex + 1 }));
 	
 			// check for notes in verse
 			var matches = verseText.match(noteMatcher);
@@ -75653,11 +75652,12 @@
 					}));
 				}
 			}
+			verses.push(_react2.default.createElement(_Verse.Verse, { text: verseText, number: verseIndex + 1 }));
 		}
 	
 		return _react2.default.createElement(
 			'div',
-			null,
+			{ className: 'seven columns' },
 			verses,
 			notes
 		);
@@ -75693,19 +75693,10 @@
 			text += ' ';
 		}
 	
-		return _react2.default.createElement(
-			'div',
-			null,
-			_react2.default.createElement(VerseText, { text: text })
-		);
-	};
-	
-	var VerseText = function VerseText(_ref2) {
-		var text = _ref2.text;
-	
 		var style = {
 			display: 'inline'
 		};
+	
 		return _react2.default.createElement(
 			'p',
 			{ style: style },
@@ -75713,8 +75704,8 @@
 		);
 	};
 	
-	var VerseNote = function VerseNote(_ref3) {
-		var text = _ref3.text;
+	var VerseNote = function VerseNote(_ref2) {
+		var text = _ref2.text;
 	
 		var style = {};
 		return _react2.default.createElement(
@@ -75731,10 +75722,6 @@
 	Verse.propTypes = {
 		text: _react.PropTypes.string.isRequired,
 		number: _react.PropTypes.number.isRequired
-	};
-	
-	VerseText.propTypes = {
-		text: _react.PropTypes.string.isRequired
 	};
 	
 	VerseNote.propTypes = {

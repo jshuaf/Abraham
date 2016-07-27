@@ -6,18 +6,13 @@ const Verse = ({ text }) => {
 		text += ' ';
 	}
 
-	return (
-		<div>
-			<VerseText text={text} />
-		</div>
-	);
-};
-
-const VerseText = ({ text }) => {
 	const style = {
 		display: 'inline',
 	};
-	return <p style={style}>{text}</p>;
+
+	return (
+		<p style={style}>{text}</p>
+	);
 };
 
 const VerseNote = ({ text }) => {
@@ -33,10 +28,6 @@ const VerseNote = ({ text }) => {
 Verse.propTypes = {
 	text: PropTypes.string.isRequired,
 	number: PropTypes.number.isRequired,
-};
-
-VerseText.propTypes = {
-	text: PropTypes.string.isRequired,
 };
 
 VerseNote.propTypes = {

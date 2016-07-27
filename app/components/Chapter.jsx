@@ -7,7 +7,6 @@ const Chapter = ({ text }) => {
 	const notes = [];
 	for (let verseIndex = 0; verseIndex < text.length; verseIndex++) {
 		let verseText = text[verseIndex];
-		verses.push(<Verse text={verseText} number={verseIndex + 1} />);
 
 		// check for notes in verse
 		const matches = verseText.match(noteMatcher);
@@ -20,10 +19,11 @@ const Chapter = ({ text }) => {
 				/>);
 			}
 		}
+		verses.push(<Verse text={verseText} number={verseIndex + 1} />);
 	}
 
 	return (
-		<div>
+		<div className="seven columns">
 			{verses}
 			{notes}
 		</div>
