@@ -75640,6 +75640,7 @@
 		var notes = [];
 		for (var verseIndex = 0; verseIndex < text.length; verseIndex++) {
 			var verseText = text[verseIndex];
+			var textIndent = '0%';
 	
 			// check for notes in verse
 			var matches = verseText.match(noteMatcher);
@@ -75652,12 +75653,23 @@
 					}));
 				}
 			}
-			verses.push(_react2.default.createElement(_Verse.Verse, { text: verseText, number: verseIndex + 1 }));
+			if (verseIndex % 5 === 4) {
+				verses.push(_react2.default.createElement('br', null));
+				textIndent = '10%';
+			} else if (verseIndex === 0) {
+				textIndent = '10%';
+			}
+			verses.push(_react2.default.createElement(_Verse.Verse, { text: verseText, number: verseIndex + 1, indent: textIndent }));
 		}
+	
+		var style = {
+			textAlign: 'left',
+			lineHeight: '300%'
+		};
 	
 		return _react2.default.createElement(
 			'div',
-			{ className: 'seven columns' },
+			{ className: 'six columns offset-by-one', style: style },
 			verses,
 			notes
 		);
@@ -75687,14 +75699,15 @@
 	
 	var Verse = function Verse(_ref) {
 		var text = _ref.text;
+		var indent = _ref.indent;
 	
 		// add a space if needed
 		if (text[text.length - 1] !== ' ') {
 			text += ' ';
 		}
-	
 		var style = {
-			display: 'inline'
+			display: 'inline',
+			marginLeft: indent
 		};
 	
 		return _react2.default.createElement(
@@ -75721,7 +75734,8 @@
 	
 	Verse.propTypes = {
 		text: _react.PropTypes.string.isRequired,
-		number: _react.PropTypes.number.isRequired
+		number: _react.PropTypes.number.isRequired,
+		indent: _react.PropTypes.string.isRequired
 	};
 	
 	VerseNote.propTypes = {

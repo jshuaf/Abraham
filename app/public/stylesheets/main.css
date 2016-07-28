@@ -1,5 +1,10 @@
+html {
+	font-size: 20%;
+}
+
 p {
-	font-family: 'Titillium Web', sans-serif;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 2rem;
 }
 
 .verses {

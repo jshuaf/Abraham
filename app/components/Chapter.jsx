@@ -7,6 +7,7 @@ const Chapter = ({ text }) => {
 	const notes = [];
 	for (let verseIndex = 0; verseIndex < text.length; verseIndex++) {
 		let verseText = text[verseIndex];
+		let textIndent = '0%';
 
 		// check for notes in verse
 		const matches = verseText.match(noteMatcher);
@@ -19,11 +20,22 @@ const Chapter = ({ text }) => {
 				/>);
 			}
 		}
-		verses.push(<Verse text={verseText} number={verseIndex + 1} />);
+		if (verseIndex % 5 === 4) {
+			verses.push(<br></br>);
+			textIndent = '10%';
+		} else if (verseIndex === 0) {
+			textIndent = '10%';
+		}
+		verses.push(<Verse text={verseText} number={verseIndex + 1} indent={textIndent} />);
 	}
 
+	const style = {
+		textAlign: 'left',
+		lineHeight: '300%',
+	};
+
 	return (
-		<div className="seven columns">
+		<div className="six columns offset-by-one" style={style}>
 			{verses}
 			{notes}
 		</div>

@@ -1,13 +1,13 @@
 import React, { PropTypes } from 'react';
 
-const Verse = ({ text }) => {
+const Verse = ({ text, indent }) => {
 	// add a space if needed
 	if (text[text.length - 1] !== ' ') {
 		text += ' ';
 	}
-
 	const style = {
 		display: 'inline',
+		marginLeft: indent,
 	};
 
 	return (
@@ -28,6 +28,7 @@ const VerseNote = ({ text }) => {
 Verse.propTypes = {
 	text: PropTypes.string.isRequired,
 	number: PropTypes.number.isRequired,
+	indent: PropTypes.string.isRequired,
 };
 
 VerseNote.propTypes = {
