@@ -1,5 +1,3 @@
-import { connect, Provider } from 'react-redux';
-import { createStore } from 'redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import request from 'request';
@@ -18,7 +16,7 @@ class App extends React.Component {
 		request({
 			url: 'http://localhost:4000/book',
 			method: 'post',
-			json: true,	 // <--Very important!!!
+			json: true,
 			body: { bookNumber: 1 },
 		}, (error, response, body) => {
 			this.setState(body);

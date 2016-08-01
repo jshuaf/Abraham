@@ -8,7 +8,7 @@ const Chapter = ({ text }) => {
 	for (let verseIndex = 0; verseIndex < text.length; verseIndex++) {
 		let verseText = text[verseIndex];
 		let textIndent = '0%';
-
+		/*
 		// check for notes in verse
 		const matches = verseText.match(noteMatcher);
 		if (matches) {
@@ -25,7 +25,7 @@ const Chapter = ({ text }) => {
 			textIndent = '10%';
 		} else if (verseIndex === 0) {
 			textIndent = '10%';
-		}
+		}*/
 		verses.push(<Verse text={verseText} number={verseIndex + 1} indent={textIndent} />);
 	}
 

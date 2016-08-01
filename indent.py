@@ -108,7 +108,7 @@ def sublist_indices(l, sl):
 base_url = 'https://www.bible.com'
 current_chapter = 0
 current_book = 0
-next_book_url = '/bible/206/mat5.web'
+next_book_url = '/bible/206/gen1.web'
 
 output = []
 os.chdir(sys.path[0])
@@ -136,7 +136,15 @@ with open('raw/versions/web.csv', 'r') as verse_input:
             jesus = parsed['jesus']
 
         # check for indents
-        verse_indents = indents[verse]
+        try:
+            verse_indents = indents[verse]
+        except KeyError:
+            print("ERROR: could not find verse %r", verse)
+            current_output[4] = ''
+            current_output += ['', '', '']
+            output.append(current_output)
+            continue
+
         current_indents = []
         current_indent_indices = []
         current_verse_string = ''
@@ -147,6 +155,9 @@ with open('raw/versions/web.csv', 'r') as verse_input:
             if len(current_indent_indices) == 0:
                 current_indent_indices.append(0)
             current_indent_indices.append(current_indent_indices[-1] + section_length)
+            if current_verse_string:
+                if not(current_verse_string[-1] == ' ' or verse_indent[1] == ' '):
+                    current_verse_string += ' '
             current_verse_string += verse_indent[1]
 
         current_output.append(','.join(current_indents))

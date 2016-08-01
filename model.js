@@ -12,6 +12,11 @@ exports.getBook = (bookNumber, callback) => {
 		});
 
 		const bookText = [];
+		const bookDetails = {
+			indents: [],
+			indentIndices: [],
+			jqIndices: [],
+		};
 		db.collection('web').find({ book: bookNumber }, (collectionError, rawVerses) => {
 			if (!collectionError) {
 				rawVerses.sort({ _id: 1 }).toArray((error, verses) => {
@@ -20,11 +25,19 @@ exports.getBook = (bookNumber, callback) => {
 						const chapter = verse.chapter;
 						if (chapter > bookText.length) {
 							bookText.push([]);
+							bookDetails.indents.push([]);
+							bookDetails.indentIndices.push([]);
+							bookDetails.jqIndices.push([]);
 						}
 						bookText[chapter - 1].push(verse.text);
+						bookDetails.indents[chapter - 1].push(verse.indents.split(',').map((x) => +x));
+						bookDetails.indentIndices[chapter - 1].push(
+							verse.indentIndices.split(',').map((x) => +x));
+						bookDetails.jqIndices[chapter - 1].push(
+							verse.jqIndices.split(',').map((x) => +x));
 					}
 					db.close();
-					callback({ bookName, bookText });
+					callback({ bookName, bookText, bookDetails });
 				});
 			}
 		});
