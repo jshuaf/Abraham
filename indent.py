@@ -134,9 +134,6 @@ with open('raw/versions/web.csv', 'r') as verse_input:
             parsed = parse(soup)
             indents = parsed['indents']
             jesus = parsed['jesus']
-            print(output, indents)
-            if chapter == '2':
-                break
 
         # check for indents
         verse_indents = indents[verse]
