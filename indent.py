@@ -165,7 +165,11 @@ with open('raw/versions/web.csv', 'r') as verse_input:
                 quote_parts = clean_string(quote).split(' ')
                 quote_indices = sublist_indices(current_verse_parts, quote_parts)
                 if quote_indices:
-                    jesus_indices += list(quote_indices)
+                    if jesus_indices:
+                        if quote_indices[0] == jesus_indices[-1]:
+                            jesus_indices = jesus_indices[:-1] + [quote_indices[1]]
+                            continue
+                    jesus_indices += quote_indices
                 else:
                     print("ERROR: STRINGS DON'T MATCH", quote, current_verse_string)
             if jesus_indices:
