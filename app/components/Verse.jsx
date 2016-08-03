@@ -7,7 +7,7 @@ const Verse = ({ text, indent }) => {
 	}
 	const style = {
 		display: 'inline',
-		marginLeft: indent,
+		color: '#58371C',
 	};
 
 	return (

@@ -32,6 +32,7 @@ exports.getBook = (bookNumber, callback) => {
 							bookNotes.push([]);
 						}
 						bookText[chapter - 1].push(verse.text);
+						console.log(typeof(verse.indent));
 						bookDetails.indents[chapter - 1].push(String(verse.indent).split(',').map((x) => +x));
 						bookDetails.indentIndices[chapter - 1].push(
 							String(verse.indentIndices).split(',').map((x) => +x));

@@ -1,3 +1,8 @@
+@font-face {
+	font-family: "Palatino Linotype";
+	src: url("./assets/Palatino Linotype.ttf") format("truetype");
+}
+
 html {
 	font-size: 20%;
 }
@@ -7,7 +12,7 @@ body {
 }
 
 p {
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Palatino Linotype';
 	font-size: 2rem;
 }
 

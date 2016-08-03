@@ -101,6 +101,8 @@
   .offset-by-ten.columns          { margin-left: 86.6666666667%; }
   .offset-by-eleven.column,
   .offset-by-eleven.columns       { margin-left: 95.3333333333%; }
+  .offset-by-two-and-one-half.column,
+  .offset-by-two-and-one-half.columns { margin-left: 21.33333333333%}
 
   .offset-by-one-third.column,
   .offset-by-one-third.columns    { margin-left: 34.6666666667%; }

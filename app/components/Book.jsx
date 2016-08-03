@@ -14,6 +14,7 @@ const Book = ({ text, details, notes }) => {
 		chapters.push(<Chapter
 			text={chapterText}
 			details={chapterDetails}
+			notes={chapterNotes}
 			number={i + 1} key={i + 1}
 		/>);
 	}
