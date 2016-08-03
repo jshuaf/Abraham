@@ -32,12 +32,12 @@ exports.getBook = (bookNumber, callback) => {
 							bookNotes.push([]);
 						}
 						bookText[chapter - 1].push(verse.text);
-						bookDetails.indents[chapter - 1].push(verse.indents.split(',').map((x) => +x));
+						bookDetails.indents[chapter - 1].push(String(verse.indent).split(',').map((x) => +x));
 						bookDetails.indentIndices[chapter - 1].push(
-							verse.indentIndices.split(',').map((x) => +x));
+							String(verse.indentIndices).split(',').map((x) => +x));
 						bookDetails.jqIndices[chapter - 1].push(
-							verse.jqIndices.split(',').map((x) => +x));
-						bookNotes[chapter - 1].push([verse.note1, verse.note2, verse.note3]);
+							String(verse.jqIndices).split(',').map((x) => +x));
+						bookNotes[chapter - 1].push([verse.note1, verse.note2, verse.note3].map((x) => String(x)));
 					}
 					db.close();
 					callback({ bookName, bookText, bookDetails, bookNotes });
