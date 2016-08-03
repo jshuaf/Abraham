@@ -10,6 +10,8 @@ class App extends React.Component {
 		this.state = {
 			bookName: '',
 			bookText: [],
+			bookDetails: {},
+			bookNotes: [],
 		};
 	}
 	componentDidMount() {
@@ -25,7 +27,12 @@ class App extends React.Component {
 	render() {
 		return (
 			<div>
-				<Book bookName={this.state.bookName} text={this.state.bookText} />
+				<Book
+					bookName={this.state.bookName}
+					text={this.state.bookText}
+					details={this.state.bookDetails}
+					notes={this.state.bookNotes}
+				/>
 			</div>
 		);
 	}

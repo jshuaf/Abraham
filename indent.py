@@ -4,6 +4,7 @@ import csv
 import os
 import sys
 import re
+import pickle
 
 
 def parse(soup):
@@ -11,74 +12,80 @@ def parse(soup):
     # a dictionary of details for each verse
     indents = {}
     jesus = {}
+    notes = {}
     chapter = soup.find('div', class_='chapter')
+
+    # each section of a certain indent is within a div tag with a certain class
+    # iterate over these divs here
     for section in chapter.find_all('div', {
         'class': ['q', 'q2', 'p', 'nb', 'm', 'mi', 'pi', 'li']
     }):
-        # each section of a certain indent is within a div tag with a certain class
-        # iterate over these divs here
-        lines = section.find_all('span', class_='verse')
+
+        # set the default indent for the non-first span
+        indent_class = section['class'][0]
         line = None
-        for candidate_line in lines:
-            # within each div, there are spans with the verse tag
-            # some of these have no content, however...
-            # and only the first span has the indent of its div section
 
-            span = None
-            candidate_spans = candidate_line.find_all('span', {'class': ['content']})
-            for candidate_span in candidate_spans:
-                if len(candidate_span.string) > 1:
-                    span = candidate_span
-                    break
+        # within each div, there are spans with the verse tag
+        # some of these have no content, however...
+        # and only the first span has the indent of its div section
+        for candidate_line in section.find_all('span', class_='verse'):
 
-            if span:
-                # set the default indent for the non-first span
-                indent_class = section['class'][0]
-                if indent_class == 'pi':
-                    indent = '0.5'
-                else:
-                    indent = '0'
+            # initialize indent checking
+            current_verse = candidate_line['class'][1][1:]
+            current_verse_indents = []
+            if current_verse not in indents:
+                indents[current_verse] = []
 
-                # set the indent for the first span
-                if not line:
-                    line = candidate_line
-                    if indent_class == 'p' or indent_class == 'pi':
-                        indent = '1'
-                    elif indent_class == 'q':
-                        indent = '2'
-                    elif indent_class == 'q2':
-                        indent = '3'
-                    elif indent_class == 'm':
-                        indent = '-1'
-                    elif indent_class == 'mi' or indent_class == 'li':
-                        indent = '0.5'
+            content_string = ''
 
-                # find the content within the span and store it
-                current_verse = candidate_line['class'][1][1:]
-                current_verse_indents = []
-                if current_verse not in indents:
-                    indents[current_verse] = []
+            for content in candidate_line.find_all('span', {'class': ['content']}):
+                indent = '0.5' if indent_class == 'pi' else '0'
+                if not content.string:
+                    content.string = content.contents[0].encode('utf-8')
+                elif len(content.string) > 1:
+                    if not line:
+                        line = candidate_line
+                        if indent_class == 'p' or indent_class == 'pi':
+                            indent = '1'
+                        elif indent_class == 'q':
+                            indent = '2'
+                        elif indent_class == 'q2':
+                            indent = '3'
+                        elif indent_class == 'm':
+                            indent = '-1'
+                        elif indent_class == 'mi' or indent_class == 'li':
+                            indent = '0.5'
 
-                content_string = ''
-                for content in candidate_line.find_all('span', {'class': 'content'}):
-                    # store the actual verse text
-                    current_content_string = content.string.encode('utf-8')
-                    if len(current_content_string) > 1:
-                        if len(content_string):
-                            if not(content_string[-1] == ' ' or current_content_string[0] == ' '):
-                                content_string += ' '
-                        content_string += current_content_string
+                # store the actual verse text
+                current_content_string = content.string.encode('utf-8')
+                if len(current_content_string) > 1:
+                    if len(content_string):
+                        if not(content_string[-1] == ' ' or current_content_string[0] == ' '):
+                            content_string += ' '
+                    content_string += current_content_string
 
-                    # check if they are quotes from Jesus
-                    if content.parent['class'][0] == 'wj':
-                        if current_verse not in jesus:
-                            jesus[current_verse] = []
-                        jesus[current_verse].append(current_content_string)
+                # check if they are quotes from Jesus
+                if content.parent['class'][0] == 'wj':
+                    if current_verse not in jesus:
+                        jesus[current_verse] = []
+                    jesus[current_verse].append(current_content_string)
+
+            # only add if the values are there
+            if indent and content_string:
                 current_verse_indents.append((indent, content_string))
                 indents[current_verse] += current_verse_indents
+
+            # add verse notes
+            for note in candidate_line.find_all('span', {'class': 'ft'}):
+                if current_verse not in notes:
+                    notes[current_verse] = []
+                note.string = note.string.encode('utf-8')
+                if note.string not in notes[current_verse]:
+                    notes[current_verse].append(note.string)
     return {
         'indents': indents,
-        'jesus': jesus
+        'jesus': jesus,
+        'notes': notes
     }
 
 
@@ -116,7 +123,7 @@ os.chdir(sys.path[0])
 with open('raw/versions/web.csv', 'r') as verse_input:
     reader = csv.reader(verse_input)
     header = next(reader)
-    header += ['indent', 'indent_indices', 'jesus_indices']
+    header += ['indent', 'indent_indices', 'jesus_indices', 'note1', 'note2', 'note3']
     output.append(header)
 
     for verse_data in reader:
@@ -134,12 +141,16 @@ with open('raw/versions/web.csv', 'r') as verse_input:
             parsed = parse(soup)
             indents = parsed['indents']
             jesus = parsed['jesus']
+            notes = parsed['notes']
+
+            if book == '3':
+                break
 
         # check for indents
         try:
             verse_indents = indents[verse]
         except KeyError:
-            print("ERROR: could not find verse %r", verse)
+            print("ERROR: could not find verse %r" % verse)
             current_output[4] = ''
             current_output += ['', '', '']
             output.append(current_output)
@@ -187,12 +198,29 @@ with open('raw/versions/web.csv', 'r') as verse_input:
         else:
             current_output.append('0')
 
+        # check for notes
+        if verse in notes:
+            verse_notes = []
+            if len(notes[verse]) > 3:
+                print("ERROR: more than three notes in a single verse", verse, notes[verse])
+            for note in notes[verse][:3]:
+                verse_notes.append(re.sub(r'(?i)<span[^>]*>', r'', note))
+            for i in range(3 - len(verse_notes)):
+                verse_notes.append('')
+            current_output += verse_notes
+        else:
+            current_output += ['', '', '']
+
         output.append(current_output)
 
     verse_input.close()
 
-"""
+print(output)
+
+test = open("save.p", "wb")
+pickle.dump(output, test)
+
 with open('test.csv', 'w') as test:
     writer = csv.writer(test)
     writer.writerows(output)
-    test.close()"""
+    test.close()
