@@ -6,15 +6,15 @@ MongoClient.connect(mongoURI, (dbError, db) => {
 	assert.equal(null, dbError);
 	db.collection('web').find({ $or: [
 		{ 'indent': { $type: 'number' } },
-		{ 'indent_indices': { $type: 'number' } },
-		{ 'jesus_indices': { $type: 'number' } },
+		{ 'indentIndices': { $type: 'number' } },
+		{ 'jqIndices': { $type: 'number' } },
 	] }).each((error, verse) => {
 		if (error) {
 			console.log('ERROR:', error);
 		} else if (verse) {
 			verse.indent += '';
-			verse.indent_indices += '';
-			verse.jesus_indices += '';
+			verse.indentIndices += '';
+			verse.jqIndices += '';
 			db.collection('web').save(verse);
 		} else {
 			db.close();

@@ -73956,7 +73956,7 @@
   \*********************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -73977,6 +73977,7 @@
 		var details = _ref.details;
 		var notes = _ref.notes;
 	
+		console.log(text, details, notes);
 		var chapters = [];
 		for (var i = 0; i < text.length; i++) {
 			var chapterText = text[i];
@@ -74000,7 +74001,7 @@
 		);
 	};
 	
-	var indicesArrayPropType = _react.PropTypes.arrayOf(_react.PropTypes.arrayOf(_react.PropTypes.arrayOf(_react.PropTypes.arrayOf(_react.PropTypes.number.isRequired).isRequired).isRequired).isRequired).isRequired;
+	var indicesArrayPropType = _react.PropTypes.arrayOf(_react.PropTypes.arrayOf(_react.PropTypes.arrayOf(_react.PropTypes.number.isRequired).isRequired).isRequired);
 	
 	Book.propTypes = {
 		bookName: _react.PropTypes.string.isRequired,
@@ -74014,6 +74015,7 @@
 	};
 	
 	exports.default = Book;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/console-browserify/index.js */ 12)))
 
 /***/ },
 /* 375 */

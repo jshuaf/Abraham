@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import Chapter from './Chapter.jsx';
 
 const Book = ({ text, details, notes }) => {
+	console.log(text, details, notes);
 	const chapters = [];
 	for (let i = 0; i < text.length; i++) {
 		const chapterText = text[i];
@@ -23,9 +24,9 @@ const Book = ({ text, details, notes }) => {
 
 const indicesArrayPropType = PropTypes.arrayOf(
 	PropTypes.arrayOf(PropTypes.arrayOf(
-		PropTypes.arrayOf(PropTypes.number.isRequired).isRequired
+		PropTypes.number.isRequired
 	).isRequired).isRequired
-).isRequired;
+);
 
 Book.propTypes = {
 	bookName: PropTypes.string.isRequired,
