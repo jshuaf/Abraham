@@ -2,10 +2,12 @@ import React, { PropTypes } from 'react';
 import { Verse } from './Verse.jsx';
 
 const Chapter = ({ text, details, notes }) => {
+	const verses = [];
 	for (let verseIndex = 0; verseIndex < text.length; verseIndex++) {
 		verses.push(<Verse
 			text={text[verseIndex]}
 			notes={notes[verseIndex]}
+			key={verseIndex}
 			number={verseIndex + 1}
 			indents={details.indents[verseIndex]}
 			indentIndices={details.indentIndices[verseIndex]}
@@ -26,9 +28,7 @@ const Chapter = ({ text, details, notes }) => {
 };
 
 const indicesArrayPropType = PropTypes.arrayOf(
-	PropTypes.arrayOf(PropTypes.arrayOf(
-		PropTypes.number.isRequired).isRequired
-	).isRequired
+	PropTypes.arrayOf(PropTypes.number.isRequired).isRequired
 ).isRequired;
 
 
@@ -42,7 +42,7 @@ Chapter.propTypes = {
 		indentIndices: indicesArrayPropType,
 		jqIndices: indicesArrayPropType,
 	}).isRequired,
-	notes: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+	notes: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string.isRequired).isRequired),
 };
 
 export default Chapter;

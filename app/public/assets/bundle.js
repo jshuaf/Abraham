@@ -73956,7 +73956,7 @@
   \*********************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(console) {'use strict';
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -73977,7 +73977,6 @@
 		var details = _ref.details;
 		var notes = _ref.notes;
 	
-		console.log(text, details, notes);
 		var chapters = [];
 		for (var i = 0; i < text.length; i++) {
 			var chapterText = text[i];
@@ -74015,7 +74014,6 @@
 	};
 	
 	exports.default = Book;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/console-browserify/index.js */ 12)))
 
 /***/ },
 /* 375 */
@@ -74043,10 +74041,12 @@
 		var details = _ref.details;
 		var notes = _ref.notes;
 	
+		var verses = [];
 		for (var verseIndex = 0; verseIndex < text.length; verseIndex++) {
 			verses.push(_react2.default.createElement(_Verse.Verse, {
 				text: text[verseIndex],
 				notes: notes[verseIndex],
+				key: verseIndex,
 				number: verseIndex + 1,
 				indents: details.indents[verseIndex],
 				indentIndices: details.indentIndices[verseIndex],
@@ -74066,7 +74066,7 @@
 		);
 	};
 	
-	var indicesArrayPropType = _react.PropTypes.arrayOf(_react.PropTypes.arrayOf(_react.PropTypes.arrayOf(_react.PropTypes.number.isRequired).isRequired).isRequired).isRequired;
+	var indicesArrayPropType = _react.PropTypes.arrayOf(_react.PropTypes.arrayOf(_react.PropTypes.number.isRequired).isRequired).isRequired;
 	
 	Chapter.propTypes = {
 		number: _react.PropTypes.number.isRequired,
@@ -74076,7 +74076,7 @@
 			indentIndices: indicesArrayPropType,
 			jqIndices: indicesArrayPropType
 		}).isRequired,
-		notes: _react.PropTypes.arrayOf(_react.PropTypes.string.isRequired).isRequired
+		notes: _react.PropTypes.arrayOf(_react.PropTypes.arrayOf(_react.PropTypes.string.isRequired).isRequired)
 	};
 	
 	exports.default = Chapter;
@@ -74098,50 +74098,50 @@
 	
 	var Verse = function Verse(_ref) {
 		var text = _ref.text;
-		var indent = _ref.indent;
+		var notes = _ref.notes;
+		var indents = _ref.indents;
+		var indentIndices = _ref.indentIndices;
+		var jqIndices = _ref.jqIndices;
 	
 		// add a space if needed
 		if (text[text.length - 1] !== ' ') {
 			text += ' ';
 		}
+	
 		var style = {
-			display: 'inline',
-			color: '#58371C'
+			color: '#58371C',
+			marginLeft: 0
 		};
+		var verse = [];
+		var textWords = text.split(' ');
+		for (var i = 0; i < indents.length; i++) {
+			var indent = indents[i];
+			var verseSection = textWords.slice(indentIndices[i], indentIndices[i + 1]).join(' ');
 	
-		return _react2.default.createElement(
-			'p',
-			{ style: style },
-			text
-		);
-	};
+			style.marginLeft = indent * 30;
+			if (indent !== 0) {
+				verse.push(_react2.default.createElement('br', null));
+			}
+			verse.push(_react2.default.createElement(
+				'span',
+				{ style: style, className: 'verseText', key: i },
+				verseSection
+			));
+		}
 	
-	var VerseNote = function VerseNote(_ref2) {
-		var text = _ref2.text;
-	
-		var style = {};
 		return _react2.default.createElement(
 			'div',
-			{ style: style },
-			_react2.default.createElement(
-				'p',
-				null,
-				text
-			)
+			{ className: 'verse', style: { display: 'inline' } },
+			verse
 		);
 	};
 	
 	Verse.propTypes = {
 		text: _react.PropTypes.string.isRequired,
-		number: _react.PropTypes.number.isRequired,
-		indent: _react.PropTypes.string.isRequired
+		number: _react.PropTypes.number.isRequired
 	};
 	
-	VerseNote.propTypes = {
-		text: _react.PropTypes.string.isRequired
-	};
-	
-	module.exports = { Verse: Verse, VerseNote: VerseNote };
+	module.exports = { Verse: Verse };
 
 /***/ }
 /******/ ]);

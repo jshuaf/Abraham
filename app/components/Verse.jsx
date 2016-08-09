@@ -1,26 +1,31 @@
 import React, { PropTypes } from 'react';
 
-const Verse = ({ text, indent }) => {
+const Verse = ({ text, notes, indents, indentIndices, jqIndices }) => {
 	// add a space if needed
 	if (text[text.length - 1] !== ' ') {
 		text += ' ';
 	}
-	const style = {
-		display: 'inline',
+
+	let style = {
 		color: '#58371C',
+		marginLeft: 0,
 	};
+	const verse = [];
+	const textWords = text.split(' ');
+	for (let i = 0; i < indents.length; i++) {
+		const indent = indents[i];
+		const verseSection = textWords.slice(indentIndices[i], indentIndices[i + 1]).join(' ');
+
+		style.marginLeft = indent * 30;
+		if (indent !== 0) {
+			verse.push(<br />);
+		}
+		verse.push(<span style={style} className="verseText" key={i}>{verseSection}</span>);
+	}
 
 	return (
-		<p style={style}>{text}</p>
-	);
-};
-
-const VerseNote = ({ text }) => {
-	const style = {
-	};
-	return (
-		<div style={style}>
-			<p>{text}</p>
+		<div className="verse" style={{ display: 'inline' }}>
+			{verse}
 		</div>
 	);
 };
@@ -28,11 +33,6 @@ const VerseNote = ({ text }) => {
 Verse.propTypes = {
 	text: PropTypes.string.isRequired,
 	number: PropTypes.number.isRequired,
-	indent: PropTypes.string.isRequired,
 };
 
-VerseNote.propTypes = {
-	text: PropTypes.string.isRequired,
-};
-
-module.exports = { Verse, VerseNote };
+module.exports = { Verse };

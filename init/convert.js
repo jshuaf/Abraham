@@ -5,9 +5,9 @@ const assert = require('assert');
 MongoClient.connect(mongoURI, (dbError, db) => {
 	assert.equal(null, dbError);
 	db.collection('web').find({ $or: [
-		{ 'indent': { $type: 'number' } },
-		{ 'indentIndices': { $type: 'number' } },
-		{ 'jqIndices': { $type: 'number' } },
+		{ indent: { $type: 'number' } },
+		{ indentIndices: { $type: 'number' } },
+		{ jqIndices: { $type: 'number' } },
 	] }).each((error, verse) => {
 		if (error) {
 			console.log('ERROR:', error);

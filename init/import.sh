@@ -6,3 +6,4 @@ for path in ../raw/versions/*.csv; do
 done
 
 mongoimport -d bible -c books --type csv --file ../raw/books.csv --fields _id,name,testament,genre
+node convert

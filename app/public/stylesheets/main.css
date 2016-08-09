@@ -1,6 +1,6 @@
 @font-face {
 	font-family: "Palatino Linotype";
-	src: url("./assets/Palatino Linotype.ttf") format("truetype");
+	src: url("../assets/Palatino Linotype.ttf") format("truetype");
 }
 
 html {
@@ -11,7 +11,7 @@ body {
 	background-color: #F9F3E8;
 }
 
-p {
+.verseText {
 	font-family: 'Palatino Linotype';
 	font-size: 2rem;
 }
