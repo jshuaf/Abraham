@@ -10,7 +10,8 @@ const Verse = ({ text, notes, indents, indentIndices, jqIndices }) => {
 		color: '#58371C',
 		marginLeft: 0,
 		fontSize: '2rem',
-	
+	};
+
 	const verse = [];
 	const textWords = text.split(' ');
 	for (let i = 0; i < indents.length; i++) {

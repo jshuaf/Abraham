@@ -1,17 +1,23 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
-	entry: path.resolve('app/components/App.jsx'),
-	output: { path: 'app/public/assets', filename: 'bundle.js' },
+	entry: [
+		'webpack-dev-server/client?http://0.0.0.0:4001', // WebpackDevServer host and port
+		'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors
+		path.resolve('app/components/App.jsx'),
+	],
+	output: {
+		path: `${__dirname}/app/public/assets/raw/`,
+		publicPath: 'http://localhost:4001/',
+		filename: 'bundle.js',
+	},
 	module: {
 		loaders: [
 			{
 				test: /.jsx?$/,
-				loader: 'babel-loader',
+				loaders: ['react-hot', 'babel-loader?presets[]=es2015,presets[]=react'],
 				exclude: /node_modules/,
-				query: {
-					presets: ['es2015', 'react'],
-				},
 			},
 			{
 				test: /\.json$/,
@@ -20,6 +26,7 @@ module.exports = {
 		],
 		noParse: /node_modules\/json-schema\/lib\/validate\.js/,
 	},
+	plugins: [new webpack.HotModuleReplacementPlugin(), new webpack.NoErrorsPlugin()],
 	node: {
 		console: true,
 		fs: 'empty',
