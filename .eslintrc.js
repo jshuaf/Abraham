@@ -12,8 +12,7 @@ module.exports = {
 		"indent": ["error", "tab"],
 		"react/jsx-indent": ["off"],
 		"react/jsx-indent-props": ["off"],
-		"react/jsx-closing-bracket-location": ["off"],
-		"no-param-reassign": ["off"]
+		"react/jsx-closing-bracket-location": ["off"]
 	},
 	plugins: ["react"]
 }

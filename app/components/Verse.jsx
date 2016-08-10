@@ -9,7 +9,8 @@ const Verse = ({ text, notes, indents, indentIndices, jqIndices }) => {
 	let style = {
 		color: '#58371C',
 		marginLeft: 0,
-	};
+		fontSize: '2rem',
+	
 	const verse = [];
 	const textWords = text.split(' ');
 	for (let i = 0; i < indents.length; i++) {
@@ -18,7 +19,7 @@ const Verse = ({ text, notes, indents, indentIndices, jqIndices }) => {
 
 		style.marginLeft = indent * 30;
 		if (indent !== 0) {
-			verse.push(<br />);
+			verse.push(<br key={i + 0.5} />);
 		}
 		verse.push(<span style={style} className="verseText" key={i}>{verseSection}</span>);
 	}

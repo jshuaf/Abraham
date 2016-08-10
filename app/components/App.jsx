@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import request from 'request';
 
 import Book from './Book.jsx';
+import Header from './Header.jsx';
 
 class App extends React.Component {
 	constructor(props) {
@@ -27,6 +28,7 @@ class App extends React.Component {
 	render() {
 		return (
 			<div>
+				<Header />
 				<Book
 					bookName={this.state.bookName}
 					text={this.state.bookText}
