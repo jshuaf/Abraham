@@ -52,6 +52,8 @@ fs.readFile('./app/public/views/foot.html', { encoding: 'utf-8' }, (error, data)
 // Serve static assets
 app.use(express.static(`${__dirname}/app/public`));
 
+app.use(cors({ origin: 'http://localhost:4000' }));
+
 // Responses
 app.get('/', (req, res) => {
 	// res.sendFile('./app/public/views/index.html', { root: __dirname });
@@ -64,7 +66,6 @@ app.get('/', (req, res) => {
 	});
 });
 
-app.options('/products/:id', cors({ origin: 'http://localhost:4001' }));
 app.post('/book', cors({ origin: 'http://localhost:4001' }), (req, res) => {
 	const { bookNumber } = req.body;
 	model.getBook(bookNumber, (bookInformation) => {

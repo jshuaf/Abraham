@@ -4,7 +4,7 @@
 }
 
 html {
-	font-size: 20%;
+	font-size: 62.5%;
 }
 
 body {
@@ -12,8 +12,13 @@ body {
 }
 
 .verseText,
-.heading {
+#header {
 	font-family: 'Palatino Linotype';
+}
+
+.chapter {
+	text-align: left;
+	line-height: 300%;
 }
 
 .verses {
