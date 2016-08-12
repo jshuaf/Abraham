@@ -15,8 +15,13 @@ const Chapter = ({ text, details, notes }) => {
 		/>);
 	}
 
+	const style = {
+		textAlign: 'left',
+		lineHeight: '370%',
+	};
+
 	return (
-		<div className="seven columns offset-by-two-and-one-half chapter">
+		<div className="seven columns offset-by-two-and-one-half" style={style}>
 			{verses}
 		</div>
 	);

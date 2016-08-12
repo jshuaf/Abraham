@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "01c96cd7193e7bf8216f"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "5493f1a8424f109b88a9"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -570,7 +570,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "http://localhost:4001/";
+/******/ 	__webpack_require__.p = "http://localhost:4001/assets/raw/";
 /******/
 /******/ 	// __webpack_hash__
 /******/ 	__webpack_require__.h = function() { return hotCurrentHash; };
@@ -81302,9 +81302,14 @@
 			}));
 		}
 	
+		var style = {
+			textAlign: 'left',
+			lineHeight: '370%'
+		};
+	
 		return _react2.default.createElement(
 			'div',
-			{ className: 'seven columns offset-by-two-and-one-half chapter' },
+			{ className: 'seven columns offset-by-two-and-one-half', style: style },
 			verses
 		);
 	};
@@ -81550,7 +81555,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Display = __webpack_require__(/*! ./Display.jsx */ 460);
+	var _Display = __webpack_require__(/*! ./Display.jsx */ 459);
 	
 	var _Display2 = _interopRequireDefault(_Display);
 	
@@ -81640,8 +81645,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../~/webpack/buildin/module.js */ 11)(module), __webpack_require__(/*! ./~/console-browserify/index.js */ 2)))
 
 /***/ },
-/* 459 */,
-/* 460 */
+/* 459 */
 /*!************************************!*\
   !*** ./app/components/Display.jsx ***!
   \************************************/

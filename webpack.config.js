@@ -9,7 +9,7 @@ module.exports = {
 	],
 	output: {
 		path: `${__dirname}/app/public/assets/raw/`,
-		publicPath: 'http://localhost:4001/',
+		publicPath: 'http://localhost:4001/assets/raw/',
 		filename: 'bundle.js',
 	},
 	module: {
