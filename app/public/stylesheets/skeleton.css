@@ -216,9 +216,9 @@ h3,
 h4,
 h5,
 h6 {
-	margin-top: 0;
-	margin-bottom: 2rem;
 	font-weight: 300;
+	-webkit-margin-before:0em;
+	-webkit-margin-after:0em;
 }
 
 h1 {

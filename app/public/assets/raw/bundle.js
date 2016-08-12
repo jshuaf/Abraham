@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "ed2685c7ebf76565d5cc"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "9b7db58c2cb872664eee"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -587,7 +587,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(/*! webpack-dev-server/client?http://0.0.0.0:4001 */1);
-	__webpack_require__(/*! webpack/hot/only-dev-server */79);
+	__webpack_require__(/*! webpack/hot/dev-server */79);
 	module.exports = __webpack_require__(/*! /Users/joshuafang/Desktop/Abraham/app/components/App.jsx */81);
 
 
@@ -9508,9 +9508,9 @@
 
 /***/ },
 /* 79 */
-/*!****************************************!*\
-  !*** (webpack)/hot/only-dev-server.js ***!
-  \****************************************/
+/*!***********************************!*\
+  !*** (webpack)/hot/dev-server.js ***!
+  \***********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {/*
@@ -9524,16 +9524,17 @@
 			return lastData.indexOf(__webpack_require__.h()) >= 0;
 		};
 		var check = function check() {
-			module.hot.check(function(err, updatedModules) {
+			module.hot.check(true, function(err, updatedModules) {
 				if(err) {
 					if(module.hot.status() in {
 							abort: 1,
 							fail: 1
 						}) {
-						console.warn("[HMR] Cannot check for update. Need to do a full reload!");
+						console.warn("[HMR] Cannot apply update. Need to do a full reload!");
 						console.warn("[HMR] " + err.stack || err.message);
+						window.location.reload();
 					} else {
-						console.warn("[HMR] Update check failed: " + err.stack || err.message);
+						console.warn("[HMR] Update failed: " + err.stack || err.message);
 					}
 					return;
 				}
@@ -9541,35 +9542,20 @@
 				if(!updatedModules) {
 					console.warn("[HMR] Cannot find update. Need to do a full reload!");
 					console.warn("[HMR] (Probably because of restarting the webpack-dev-server)");
+					window.location.reload();
 					return;
 				}
 	
-				module.hot.apply({
-					ignoreUnaccepted: true
-				}, function(err, renewedModules) {
-					if(err) {
-						if(module.hot.status() in {
-								abort: 1,
-								fail: 1
-							}) {
-							console.warn("[HMR] Cannot apply update. Need to do a full reload!");
-							console.warn("[HMR] " + err.stack || err.message);
-						} else {
-							console.warn("[HMR] Update failed: " + err.stack || err.message);
-						}
-						return;
-					}
+				if(!upToDate()) {
+					check();
+				}
 	
-					if(!upToDate()) {
-						check();
-					}
+				__webpack_require__(/*! ./log-apply-result */ 80)(updatedModules, updatedModules);
 	
-					__webpack_require__(/*! ./log-apply-result */ 80)(updatedModules, renewedModules);
+				if(upToDate()) {
+					console.log("[HMR] App is up to date.");
+				}
 	
-					if(upToDate()) {
-						console.log("[HMR] App is up to date.");
-					}
-				});
 			});
 		};
 		var addEventListener = window.addEventListener ? function(eventName, listener) {
@@ -81559,25 +81545,35 @@
 	
 	var flexboxCenter = {
 		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'center'
+		alignItems: 'center'
 	};
 	
 	var Header = function Header() {
-		var style = {
+		var headerStyle = {
 			width: '100%',
 			height: '12.5%',
 			backgroundColor: '#F7ECD2',
 			top: '0%',
-			color: '#58371C'
+			color: '#58371C',
+			justifyContent: 'center'
 		};
-		style = Object.assign(style, flexboxCenter);
+		var headerItemsStyle = {
+			width: '30%',
+			height: '100%',
+			justifyContent: 'space-between'
+		};
+		Object.assign(headerStyle, flexboxCenter);
+		Object.assign(headerItemsStyle, flexboxCenter);
 		return _react2.default.createElement(
 			'div',
-			{ id: 'header', style: style },
-			_react2.default.createElement(BookInfo, null),
-			_react2.default.createElement(AbrahamLogo, null),
-			_react2.default.createElement(ViewSettings, null)
+			{ id: 'header', style: headerStyle },
+			_react2.default.createElement(
+				'div',
+				{ id: 'headerItems', style: headerItemsStyle },
+				_react2.default.createElement(BookInfo, null),
+				_react2.default.createElement(AbrahamLogo, null),
+				_react2.default.createElement(ViewSettings, null)
+			)
 		);
 	};
 	
@@ -81595,7 +81591,8 @@
 				id: 'bookInfo',
 				style: Object.assign({
 					flexDirection: 'column',
-					height: '70%'
+					height: '80%',
+					justifyContent: 'space-between'
 				}, flexboxCenter)
 			},
 			_react2.default.createElement('img', {
@@ -81617,7 +81614,8 @@
 				id: 'viewSettings',
 				style: Object.assign({
 					flexDirection: 'column',
-					height: '70%'
+					height: '80%',
+					justifyContent: 'space-between'
 				}, flexboxCenter)
 			},
 			_react2.default.createElement('img', {

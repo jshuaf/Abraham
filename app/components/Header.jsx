@@ -3,23 +3,31 @@ import React from 'react';
 const flexboxCenter = {
 	display: 'flex',
 	alignItems: 'center',
-	justifyContent: 'center',
 };
 
 const Header = () => {
-	let style = {
+	const headerStyle = {
 		width: '100%',
 		height: '12.5%',
 		backgroundColor: '#F7ECD2',
 		top: '0%',
 		color: '#58371C',
+		justifyContent: 'center',
 	};
-	style = Object.assign(style, flexboxCenter);
+	let headerItemsStyle = {
+		width: '30%',
+		height: '100%',
+		justifyContent: 'space-between',
+	};
+	Object.assign(headerStyle, flexboxCenter);
+	Object.assign(headerItemsStyle, flexboxCenter);
 	return (
-		<div id="header" style={style}>
-			<BookInfo />
-			<AbrahamLogo />
-			<ViewSettings />
+		<div id="header" style={headerStyle}>
+			<div id="headerItems" style={headerItemsStyle}>
+				<BookInfo />
+				<AbrahamLogo />
+				<ViewSettings />
+			</div>
 		</div>
 	);
 };
@@ -36,7 +44,8 @@ const BookInfo = () =>
 		id="bookInfo"
 		style={Object.assign({
 			flexDirection: 'column',
-			height: '70%',
+			height: '80%',
+			justifyContent: 'space-between',
 		}, flexboxCenter)}
 	>
 		<img
@@ -51,7 +60,8 @@ const ViewSettings = () =>
 		id="viewSettings"
 		style={Object.assign({
 			flexDirection: 'column',
-			height: '70%',
+			height: '80%',
+			justifyContent: 'space-between',
 		}, flexboxCenter)}
 	>
 		<img

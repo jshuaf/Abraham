@@ -36,6 +36,10 @@ if (!process.argv.includes('--production')) {
 	});
 }
 
+if (module.hot) {
+	module.hot.accept();
+}
+
 // Add the reused files
 fs.readFile('./app/public/views/head.html', { encoding: 'utf-8' }, (error, data) => {
 	if (!error) {
