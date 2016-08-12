@@ -9,7 +9,6 @@ const Header = () => {
 	const headerStyle = {
 		width: '100%',
 		height: '12.5%',
-		backgroundColor: '#F7ECD2',
 		top: '0%',
 		color: '#58371C',
 		justifyContent: 'center',
@@ -28,6 +27,7 @@ const Header = () => {
 				<AbrahamLogo />
 				<ViewSettings />
 			</div>
+			<div id="headerBackground" />
 		</div>
 	);
 };

@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "9b7db58c2cb872664eee"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "d1fb94ba4242751b2bfe"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -81552,7 +81552,6 @@
 		var headerStyle = {
 			width: '100%',
 			height: '12.5%',
-			backgroundColor: '#F7ECD2',
 			top: '0%',
 			color: '#58371C',
 			justifyContent: 'center'
@@ -81573,7 +81572,8 @@
 				_react2.default.createElement(BookInfo, null),
 				_react2.default.createElement(AbrahamLogo, null),
 				_react2.default.createElement(ViewSettings, null)
-			)
+			),
+			_react2.default.createElement('div', { id: 'headerBackground' })
 		);
 	};
 	
