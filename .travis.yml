@@ -1,0 +1,19 @@
+language: node_js
+node_js:
+  - stable
+services:
+  - mongodb
+install:
+  - npm install
+  - npm install snyk
+  - npm install nsp
+  - npm install eslint
+  - npm install stylelint
+script:
+  - ./node_modules/.bin/synk test
+  - ./node_modules/.bin/nsp check
+  - npm run lint
+  - ./node_modules/.bin/stylelint ./*/*.css ./*/*/*.css -f verbose
+cache:
+  directories:
+    node_modules

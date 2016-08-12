@@ -1,10 +1,8 @@
 import React, { PropTypes } from 'react';
 
-const Verse = ({ text, notes, indents, indentIndices, jqIndices }) => {
+const Verse = ({ rawText, indents, indentIndices }) => {
 	// add a space if needed
-	if (text[text.length - 1] !== ' ') {
-		text += ' ';
-	}
+	const text = rawText[rawText.length - 1] === ' ' ? rawText : `${rawText} `;
 
 	let style = {
 		color: '#58371C',
@@ -33,7 +31,9 @@ const Verse = ({ text, notes, indents, indentIndices, jqIndices }) => {
 };
 
 Verse.propTypes = {
-	text: PropTypes.string.isRequired,
+	rawText: PropTypes.string.isRequired,
+	indents: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
+	indentIndices: PropTypes.arrayOf(PropTypes.number.isRequired).isRequired,
 	number: PropTypes.number.isRequired,
 };
 

@@ -4,7 +4,6 @@
   "description": "Smooth Scripture for everybody.",
   "main": "app.js",
   "scripts": {
-    "test": "npm run test",
     "dev": "./node_modules/.bin/webpack -d",
     "lint": "./node_modules/.bin/eslint . --ext .jsx, .js || true"
   },
