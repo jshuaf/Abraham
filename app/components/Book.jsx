@@ -1,25 +1,33 @@
 import React, { PropTypes } from 'react';
 import Chapter from './Chapter.jsx';
 
-const Book = ({ text, details, notes }) => {
-	const chapters = [];
-	for (let i = 0; i < text.length; i++) {
-		const chapterText = text[i];
-		const chapterDetails = {
-			indents: details.indents[i],
-			indentIndices: details.indentIndices[i],
-			jqIndices: details.jqIndices[i],
+class Book extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			currentBook: 1,
 		};
-		const chapterNotes = notes[i];
-		chapters.push(<Chapter
-			text={chapterText}
-			details={chapterDetails}
-			notes={chapterNotes}
-			number={i + 1} key={i + 1}
-		/>);
 	}
-	return <div className="row">{chapters}</div>;
-};
+	render() {
+		const chapters = [];
+		for (let i = 0; i < this.props.text.length; i++) {
+			const chapterText = this.props.text[i];
+			const chapterDetails = {
+				indents: this.props.details.indents[i],
+				indentIndices: this.props.details.indentIndices[i],
+				jqIndices: this.props.details.jqIndices[i],
+			};
+			const chapterNotes = this.props.notes[i];
+			chapters.push(<Chapter
+				text={chapterText}
+				details={chapterDetails}
+				notes={chapterNotes}
+				number={i + 1} key={i + 1}
+			/>);
+		}
+		return <div className="row">{chapters}</div>;
+	}
+}
 
 const indicesArrayPropType = PropTypes.arrayOf(
 	PropTypes.arrayOf(PropTypes.arrayOf(

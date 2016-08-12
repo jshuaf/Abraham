@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "b2e52ff180cbad01d0af"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "d1fb94ba4242751b2bfe"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -570,7 +570,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "http://localhost:4001/";
+/******/ 	__webpack_require__.p = "http://localhost:4001/assets/raw/";
 /******/
 /******/ 	// __webpack_hash__
 /******/ 	__webpack_require__.h = function() { return hotCurrentHash; };
@@ -587,7 +587,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(/*! webpack-dev-server/client?http://0.0.0.0:4001 */1);
-	__webpack_require__(/*! webpack/hot/only-dev-server */79);
+	__webpack_require__(/*! webpack/hot/dev-server */79);
 	module.exports = __webpack_require__(/*! /Users/joshuafang/Desktop/Abraham/app/components/App.jsx */81);
 
 
@@ -9508,9 +9508,9 @@
 
 /***/ },
 /* 79 */
-/*!****************************************!*\
-  !*** (webpack)/hot/only-dev-server.js ***!
-  \****************************************/
+/*!***********************************!*\
+  !*** (webpack)/hot/dev-server.js ***!
+  \***********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(console) {/*
@@ -9524,16 +9524,17 @@
 			return lastData.indexOf(__webpack_require__.h()) >= 0;
 		};
 		var check = function check() {
-			module.hot.check(function(err, updatedModules) {
+			module.hot.check(true, function(err, updatedModules) {
 				if(err) {
 					if(module.hot.status() in {
 							abort: 1,
 							fail: 1
 						}) {
-						console.warn("[HMR] Cannot check for update. Need to do a full reload!");
+						console.warn("[HMR] Cannot apply update. Need to do a full reload!");
 						console.warn("[HMR] " + err.stack || err.message);
+						window.location.reload();
 					} else {
-						console.warn("[HMR] Update check failed: " + err.stack || err.message);
+						console.warn("[HMR] Update failed: " + err.stack || err.message);
 					}
 					return;
 				}
@@ -9541,35 +9542,20 @@
 				if(!updatedModules) {
 					console.warn("[HMR] Cannot find update. Need to do a full reload!");
 					console.warn("[HMR] (Probably because of restarting the webpack-dev-server)");
+					window.location.reload();
 					return;
 				}
 	
-				module.hot.apply({
-					ignoreUnaccepted: true
-				}, function(err, renewedModules) {
-					if(err) {
-						if(module.hot.status() in {
-								abort: 1,
-								fail: 1
-							}) {
-							console.warn("[HMR] Cannot apply update. Need to do a full reload!");
-							console.warn("[HMR] " + err.stack || err.message);
-						} else {
-							console.warn("[HMR] Update failed: " + err.stack || err.message);
-						}
-						return;
-					}
+				if(!upToDate()) {
+					check();
+				}
 	
-					if(!upToDate()) {
-						check();
-					}
+				__webpack_require__(/*! ./log-apply-result */ 80)(updatedModules, updatedModules);
 	
-					__webpack_require__(/*! ./log-apply-result */ 80)(updatedModules, renewedModules);
+				if(upToDate()) {
+					console.log("[HMR] App is up to date.");
+				}
 	
-					if(upToDate()) {
-						console.log("[HMR] App is up to date.");
-					}
-				});
 			});
 		};
 		var addEventListener = window.addEventListener ? function(eventName, listener) {
@@ -81181,6 +81167,8 @@
 		value: true
 	});
 	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
 	var _react = __webpack_require__(/*! react */ 157);
 	
 	var _react2 = _interopRequireDefault(_react);
@@ -81191,33 +81179,55 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var Book = function Book(_ref) {
-		var text = _ref.text;
-		var details = _ref.details;
-		var notes = _ref.notes;
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-		var chapters = [];
-		for (var i = 0; i < text.length; i++) {
-			var chapterText = text[i];
-			var chapterDetails = {
-				indents: details.indents[i],
-				indentIndices: details.indentIndices[i],
-				jqIndices: details.jqIndices[i]
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Book = function (_React$Component) {
+		_inherits(Book, _React$Component);
+	
+		function Book(props) {
+			_classCallCheck(this, Book);
+	
+			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Book).call(this, props));
+	
+			_this.state = {
+				currentBook: 1
 			};
-			var chapterNotes = notes[i];
-			chapters.push(_react2.default.createElement(_Chapter2.default, {
-				text: chapterText,
-				details: chapterDetails,
-				notes: chapterNotes,
-				number: i + 1, key: i + 1
-			}));
+			return _this;
 		}
-		return _react2.default.createElement(
-			'div',
-			{ className: 'row' },
-			chapters
-		);
-	};
+	
+		_createClass(Book, [{
+			key: 'render',
+			value: function render() {
+				var chapters = [];
+				for (var i = 0; i < this.props.text.length; i++) {
+					var chapterText = this.props.text[i];
+					var chapterDetails = {
+						indents: this.props.details.indents[i],
+						indentIndices: this.props.details.indentIndices[i],
+						jqIndices: this.props.details.jqIndices[i]
+					};
+					var chapterNotes = this.props.notes[i];
+					chapters.push(_react2.default.createElement(_Chapter2.default, {
+						text: chapterText,
+						details: chapterDetails,
+						notes: chapterNotes,
+						number: i + 1, key: i + 1
+					}));
+				}
+				return _react2.default.createElement(
+					'div',
+					{ className: 'row' },
+					chapters
+				);
+			}
+		}]);
+	
+		return Book;
+	}(_react2.default.Component);
 	
 	var indicesArrayPropType = _react.PropTypes.arrayOf(_react.PropTypes.arrayOf(_react.PropTypes.arrayOf(_react.PropTypes.number.isRequired).isRequired).isRequired);
 	
@@ -81268,7 +81278,7 @@
 		var verses = [];
 		for (var verseIndex = 0; verseIndex < text.length; verseIndex++) {
 			verses.push(_react2.default.createElement(_Verse.Verse, {
-				text: text[verseIndex],
+				rawText: text[verseIndex],
 				notes: notes[verseIndex],
 				key: verseIndex,
 				number: verseIndex + 1,
@@ -81280,7 +81290,7 @@
 	
 		var style = {
 			textAlign: 'left',
-			lineHeight: '300%'
+			lineHeight: '370%'
 		};
 	
 		return _react2.default.createElement(
@@ -81326,16 +81336,12 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var Verse = function Verse(_ref) {
-		var text = _ref.text;
-		var notes = _ref.notes;
+		var rawText = _ref.rawText;
 		var indents = _ref.indents;
 		var indentIndices = _ref.indentIndices;
-		var jqIndices = _ref.jqIndices;
 	
 		// add a space if needed
-		if (text[text.length - 1] !== ' ') {
-			text += ' ';
-		}
+		var text = rawText[rawText.length - 1] === ' ' ? rawText : rawText + ' ';
 	
 		var style = {
 			color: '#58371C',
@@ -81368,7 +81374,9 @@
 	};
 	
 	Verse.propTypes = {
-		text: _react.PropTypes.string.isRequired,
+		rawText: _react.PropTypes.string.isRequired,
+		indents: _react.PropTypes.arrayOf(_react.PropTypes.number.isRequired).isRequired,
+		indentIndices: _react.PropTypes.arrayOf(_react.PropTypes.number.isRequired).isRequired,
 		number: _react.PropTypes.number.isRequired
 	};
 	
@@ -81529,217 +81537,102 @@
 		value: true
 	});
 	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
 	var _react = __webpack_require__(/*! react */ 157);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Heading = __webpack_require__(/*! ./Heading.jsx */ 459);
-	
-	var _Heading2 = _interopRequireDefault(_Heading);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	var flexboxCenter = {
+		display: 'flex',
+		alignItems: 'center'
+	};
 	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	var Header = function Header() {
+		var headerStyle = {
+			width: '100%',
+			height: '12.5%',
+			top: '0%',
+			color: '#58371C',
+			justifyContent: 'center'
+		};
+		var headerItemsStyle = {
+			width: '30%',
+			height: '100%',
+			justifyContent: 'space-between'
+		};
+		Object.assign(headerStyle, flexboxCenter);
+		Object.assign(headerItemsStyle, flexboxCenter);
+		return _react2.default.createElement(
+			'div',
+			{ id: 'header', style: headerStyle },
+			_react2.default.createElement(
+				'div',
+				{ id: 'headerItems', style: headerItemsStyle },
+				_react2.default.createElement(BookInfo, null),
+				_react2.default.createElement(AbrahamLogo, null),
+				_react2.default.createElement(ViewSettings, null)
+			),
+			_react2.default.createElement('div', { id: 'headerBackground' })
+		);
+	};
 	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	var AbrahamLogo = function AbrahamLogo() {
+		var style = {
+			height: '72%'
+		};
+		return _react2.default.createElement('img', { style: style, src: 'assets/images/logo.svg', alt: 'Abraham' });
+	};
 	
-	var Header = function (_React$Component) {
-		_inherits(Header, _React$Component);
+	var BookInfo = function BookInfo() {
+		return _react2.default.createElement(
+			'div',
+			{
+				id: 'bookInfo',
+				style: Object.assign({
+					flexDirection: 'column',
+					height: '80%',
+					justifyContent: 'space-between'
+				}, flexboxCenter)
+			},
+			_react2.default.createElement('img', {
+				src: 'assets/images/book_icon.svg', alt: 'Pick a book',
+				style: { height: '45%' }
+			}),
+			_react2.default.createElement(
+				'h4',
+				{ type: 3 },
+				'Genesis 1'
+			)
+		);
+	};
 	
-		function Header() {
-			_classCallCheck(this, Header);
-	
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(Header).apply(this, arguments));
-		}
-	
-		_createClass(Header, [{
-			key: 'render',
-			value: function render() {
-				var style = {
-					width: '100%',
-					height: '12.5%',
-					backgroundColor: '#F7ECD2',
-					top: '0%',
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'center'
-				};
-				return _react2.default.createElement(
-					'div',
-					{ id: 'header', style: style },
-					_react2.default.createElement(BookInfo, null),
-					_react2.default.createElement(AbrahamLogo, null),
-					_react2.default.createElement(ViewSettings, null)
-				);
-			}
-		}]);
-	
-		return Header;
-	}(_react2.default.Component);
-	
-	var AbrahamLogo = function (_React$Component2) {
-		_inherits(AbrahamLogo, _React$Component2);
-	
-		function AbrahamLogo() {
-			_classCallCheck(this, AbrahamLogo);
-	
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(AbrahamLogo).apply(this, arguments));
-		}
-	
-		_createClass(AbrahamLogo, [{
-			key: 'render',
-			value: function render() {
-				var style = {
-					height: '72%'
-				};
-				return _react2.default.createElement('img', { style: style, src: 'assets/images/logo.svg', alt: 'Abraham' });
-			}
-		}]);
-	
-		return AbrahamLogo;
-	}(_react2.default.Component);
-	
-	var BookInfo = function (_React$Component3) {
-		_inherits(BookInfo, _React$Component3);
-	
-		function BookInfo() {
-			_classCallCheck(this, BookInfo);
-	
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(BookInfo).apply(this, arguments));
-		}
-	
-		_createClass(BookInfo, [{
-			key: 'render',
-			value: function render() {
-				return _react2.default.createElement(
-					'div',
-					{ id: 'bookInfo', style: { display: 'flex' } },
-					_react2.default.createElement('img', { src: 'assets/images/book_icon.svg', alt: 'Pick a book' }),
-					_react2.default.createElement(
-						_Heading2.default,
-						{ type: 1 },
-						'Genesis 3'
-					)
-				);
-			}
-		}]);
-	
-		return BookInfo;
-	}(_react2.default.Component);
-	
-	var ViewSettings = function (_React$Component4) {
-		_inherits(ViewSettings, _React$Component4);
-	
-		function ViewSettings() {
-			_classCallCheck(this, ViewSettings);
-	
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(ViewSettings).apply(this, arguments));
-		}
-	
-		_createClass(ViewSettings, [{
-			key: 'render',
-			value: function render() {
-				return _react2.default.createElement(
-					'div',
-					{ id: 'bookInfo' },
-					_react2.default.createElement('img', { src: 'assets/images/gear_icon.svg', alt: 'Settings' }),
-					_react2.default.createElement(
-						_Heading2.default,
-						{ type: 1 },
-						'Classic View'
-					)
-				);
-			}
-		}]);
-	
-		return ViewSettings;
-	}(_react2.default.Component);
+	var ViewSettings = function ViewSettings() {
+		return _react2.default.createElement(
+			'div',
+			{
+				id: 'viewSettings',
+				style: Object.assign({
+					flexDirection: 'column',
+					height: '80%',
+					justifyContent: 'space-between'
+				}, flexboxCenter)
+			},
+			_react2.default.createElement('img', {
+				src: 'assets/images/gear_icon.svg', alt: 'Pick a book',
+				style: { height: '45%' }
+			}),
+			_react2.default.createElement(
+				'h4',
+				null,
+				'Classic View'
+			)
+		);
+	};
 	
 	exports.default = Header;
 	
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(/*! ./~/react-hot-loader/makeExportsHot.js */ 455); if (makeExportsHot(module, __webpack_require__(/*! react */ 157))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Header.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../~/webpack/buildin/module.js */ 11)(module), __webpack_require__(/*! ./~/console-browserify/index.js */ 2)))
-
-/***/ },
-/* 459 */
-/*!************************************!*\
-  !*** ./app/components/Heading.jsx ***!
-  \************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(module, console) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(/*! ./~/react-hot-api/modules/index.js */ 82), RootInstanceProvider = __webpack_require__(/*! ./~/react-hot-loader/RootInstanceProvider.js */ 90), ReactMount = __webpack_require__(/*! react/lib/ReactMount */ 92), React = __webpack_require__(/*! react */ 157); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 157);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Heading = function (_React$Component) {
-		_inherits(Heading, _React$Component);
-	
-		function Heading() {
-			_classCallCheck(this, Heading);
-	
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(Heading).apply(this, arguments));
-		}
-	
-		_createClass(Heading, [{
-			key: 'render',
-			value: function render() {
-				var fontSize = void 0;
-				switch (this.props.type) {
-					case 1:
-						{
-							fontSize = '2.5rem';
-							break;
-						}case 2:
-						{
-							fontSize = '2rem';
-							break;
-						}default:
-						{
-							fontSize = '1.5rem';
-							break;
-						}
-				}
-				return _react2.default.createElement(
-					'h1',
-					{ fontSize: fontSize, className: 'heading' },
-					this.props.children
-				);
-			}
-		}]);
-	
-		return Heading;
-	}(_react2.default.Component);
-	
-	Heading.propTypes = {
-		type: _react2.default.PropTypes.number.isRequired,
-		children: _react2.default.PropTypes.any
-	};
-	
-	exports.default = Heading;
-	
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(/*! ./~/react-hot-loader/makeExportsHot.js */ 455); if (makeExportsHot(module, __webpack_require__(/*! react */ 157))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Heading.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../~/webpack/buildin/module.js */ 11)(module), __webpack_require__(/*! ./~/console-browserify/index.js */ 2)))
 
 /***/ }

@@ -132,7 +132,8 @@ dfn {
  * contexts in Firefox 4+, Safari, and Chrome.
  */
 
-h1 {
+section h1,
+article h1 {
 	font-size: 2em;
 	margin: 0.67em 0;
 }
@@ -288,7 +289,7 @@ select {
  */
 
 button,
-html input[type="button"], /* 1 */
+html input[type="button"],
 input[type="reset"],
 input[type="submit"] {
 	-webkit-appearance: button; /* 2 */

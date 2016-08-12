@@ -5,7 +5,7 @@ const Chapter = ({ text, details, notes }) => {
 	const verses = [];
 	for (let verseIndex = 0; verseIndex < text.length; verseIndex++) {
 		verses.push(<Verse
-			text={text[verseIndex]}
+			rawText={text[verseIndex]}
 			notes={notes[verseIndex]}
 			key={verseIndex}
 			number={verseIndex + 1}
@@ -17,7 +17,7 @@ const Chapter = ({ text, details, notes }) => {
 
 	const style = {
 		textAlign: 'left',
-		lineHeight: '300%',
+		lineHeight: '370%',
 	};
 
 	return (

@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Heading = () => {
+const Heading = ({ type, children }) => {
 	let fontSize;
-	switch (this.props.type) {
+	switch (type) {
 	case 1: {
 		fontSize = '2.5rem';
 		break;
@@ -15,7 +15,7 @@ const Heading = () => {
 	}
 	}
 	return (
-		<h1 fontSize={fontSize} className="heading">{this.props.children}</h1>
+		<h1 fontSize={fontSize} className="heading">{children}</h1>
 	);
 };
 
