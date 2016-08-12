@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "5493f1a8424f109b88a9"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "ed2685c7ebf76565d5cc"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -81555,10 +81555,6 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _Display = __webpack_require__(/*! ./Display.jsx */ 459);
-	
-	var _Display2 = _interopRequireDefault(_Display);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var flexboxCenter = {
@@ -81567,16 +81563,13 @@
 		justifyContent: 'center'
 	};
 	
-	var iconStyle = {
-		height: ''
-	};
-	
 	var Header = function Header() {
 		var style = {
 			width: '100%',
 			height: '12.5%',
 			backgroundColor: '#F7ECD2',
-			top: '0%'
+			top: '0%',
+			color: '#58371C'
 		};
 		style = Object.assign(style, flexboxCenter);
 		return _react2.default.createElement(
@@ -81610,7 +81603,7 @@
 				style: { height: '45%' }
 			}),
 			_react2.default.createElement(
-				'h3',
+				'h4',
 				{ type: 3 },
 				'Genesis 1'
 			)
@@ -81632,7 +81625,7 @@
 				style: { height: '45%' }
 			}),
 			_react2.default.createElement(
-				'h3',
+				'h4',
 				null,
 				'Classic View'
 			)
@@ -81642,64 +81635,6 @@
 	exports.default = Header;
 	
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(/*! ./~/react-hot-loader/makeExportsHot.js */ 455); if (makeExportsHot(module, __webpack_require__(/*! react */ 157))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Header.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../~/webpack/buildin/module.js */ 11)(module), __webpack_require__(/*! ./~/console-browserify/index.js */ 2)))
-
-/***/ },
-/* 459 */
-/*!************************************!*\
-  !*** ./app/components/Display.jsx ***!
-  \************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(module, console) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(/*! ./~/react-hot-api/modules/index.js */ 82), RootInstanceProvider = __webpack_require__(/*! ./~/react-hot-loader/RootInstanceProvider.js */ 90), ReactMount = __webpack_require__(/*! react/lib/ReactMount */ 92), React = __webpack_require__(/*! react */ 157); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-	
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _react = __webpack_require__(/*! react */ 157);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var Heading = function Heading(_ref) {
-		var type = _ref.type;
-		var children = _ref.children;
-	
-		var fontSize = void 0;
-		switch (type) {
-			case 1:
-				{
-					fontSize = '2.5rem';
-					break;
-				}case 2:
-				{
-					fontSize = '2rem';
-					break;
-				}default:
-				{
-					fontSize = '1.5rem';
-					break;
-				}
-		}
-		return _react2.default.createElement(
-			'h1',
-			{ fontSize: fontSize, className: 'heading' },
-			children
-		);
-	};
-	
-	Heading.propTypes = {
-		type: _react2.default.PropTypes.number.isRequired,
-		children: _react2.default.PropTypes.any
-	};
-	
-	exports.default = Heading;
-	
-	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(/*! ./~/react-hot-loader/makeExportsHot.js */ 455); if (makeExportsHot(module, __webpack_require__(/*! react */ 157))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Display.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../~/webpack/buildin/module.js */ 11)(module), __webpack_require__(/*! ./~/console-browserify/index.js */ 2)))
 
 /***/ }

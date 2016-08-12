@@ -1,15 +1,9 @@
 import React from 'react';
 
-import Heading from './Display.jsx';
-
 const flexboxCenter = {
 	display: 'flex',
 	alignItems: 'center',
 	justifyContent: 'center',
-};
-
-const iconStyle = {
-	height: '',
 };
 
 const Header = () => {
@@ -18,6 +12,7 @@ const Header = () => {
 		height: '12.5%',
 		backgroundColor: '#F7ECD2',
 		top: '0%',
+		color: '#58371C',
 	};
 	style = Object.assign(style, flexboxCenter);
 	return (
@@ -48,7 +43,7 @@ const BookInfo = () =>
 			src="assets/images/book_icon.svg" alt="Pick a book"
 			style={{ height: '45%' }}
 		/>
-		<h3 type={3}>Genesis 1</h3>
+		<h4 type={3}>Genesis 1</h4>
 	</div>;
 
 const ViewSettings = () =>
@@ -63,7 +58,7 @@ const ViewSettings = () =>
 			src="assets/images/gear_icon.svg" alt="Pick a book"
 			style={{ height: '45%' }}
 		/>
-		<h3>Classic View</h3>
+		<h4>Classic View</h4>
 	</div>;
 
 export default Header;
