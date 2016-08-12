@@ -8,10 +8,11 @@ html {
 }
 
 body {
-	background-color: #F9F3E8;
+	background-color: #f9f3e8;
 }
 
-.verseText, .heading {
+.verseText,
+.heading {
 	font-family: 'Palatino Linotype';
 }
 
